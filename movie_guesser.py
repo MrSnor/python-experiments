@@ -37,28 +37,26 @@ def show_score():
         print(i,j)
 
 # to add space to movie name while displaying it
-def space_num(movie,dashed):
+def insert_spaces(movie_title, dashed_title):
     """
     Generate a new list by inserting spaces in a given list at the positions where there are spaces in a movie title.
 
     Parameters:
-    - movie (list): A list representing a movie title.
-    - dashed (list): A list representing a dashed version of the movie title with spaces to be inserted.
+    - movie_title (list): A list representing a movie title.
+    - dashed_title (list): A list representing a dashed version of the movie title with spaces to be inserted.
 
     Returns:
     - list: A new list with spaces inserted at the positions where there are spaces in the movie title.
     """
-    pos = [] #position of spaces
-    for i in movie:
-        if i == ' ':
-            x = movie.index(' ')
-            pos.append(x)
-            movie[x] = 0
-            
-    for j in pos:
-        dashed.insert(j,' ')
-    return dashed
+    space_positions = []  # position of spaces
+    for i in range(len(movie_title)):
+        if movie_title[i] == ' ':
+            space_positions.append(i)
+            dashed_title[i] = ' '
 
+    return dashed_title
+
+# to remove spaces from movie name to ease processing
 def remove_spaces(input_string):
     """
     Removes all occurrences of spaces in the given string.
@@ -120,7 +118,7 @@ def play(number_of_turns, hint = None ) :
     
     r_movie_list[0] = 0 #replacing elements from r movie list so they dont get used again
     
-    mod_dashed = space_num(list(random_movie),dashed.copy())
+    mod_dashed = insert_spaces (list(random_movie),dashed.copy())
     for j in mod_dashed :    
         print(j,end = ' ')
     print()
@@ -152,7 +150,7 @@ Hints will be given only after first turn and if more than two blanks are presen
                 dashed[x] = i #putting valid element in correct position of dashed list 
                 
         hint_func(hint)
-        mod_dashed = space_num(list(random_movie),dashed.copy())
+        mod_dashed = insert_spaces (list(random_movie),dashed.copy())
         for j in mod_dashed :    #printing dashed list
             print(j,end = ' ')
         
