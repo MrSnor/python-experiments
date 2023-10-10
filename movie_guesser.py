@@ -69,7 +69,21 @@ def remove_spaces(input_string):
     """
     return input_string.replace(" ","")
     
-def hint_func(x):
+def generate_hint(x):
+    """
+    Generates a hint for the game based on the given condition.
+
+    Parameters:
+    - x (str): The condition to generate the hint. If `x` is equal to 'y', a hint will be generated.
+
+    Global Variables:
+    - a (unknown type): Global variable used in the function.
+    - r_movie_list (list): Global variable representing a list of movies.
+    - dashed (list): Global variable representing a list of characters with hidden letters.
+
+    Returns:
+    None
+    """
     global a,r_movie_list,dashed
     if x == 'y' :
         if dashed.count('_')>2 :
@@ -111,10 +125,10 @@ def play(number_of_turns, hint = None ) :
     dashed[0] = r_movie_list.copy()[0] #putting 1st compulsory hint in dashed list
     if len(r_movie_list) > 7:
         for i in range(3):
-            hint_func('y')
+            generate_hint('y')
     if len(r_movie_list) > 13:
         for i in range(3):
-            hint_func('y')
+            generate_hint('y')
     
     r_movie_list[0] = 0 #replacing elements from r movie list so they dont get used again
     
@@ -149,15 +163,15 @@ Hints will be given only after first turn and if more than two blanks are presen
                 r_movie_list[x] = 0 #replacing elements from r movie list so they dont get used again
                 dashed[x] = i #putting valid element in correct position of dashed list 
                 
-        hint_func(hint)
+        generate_hint(hint)
         mod_dashed = insert_spaces (list(random_movie),dashed.copy())
         for j in mod_dashed :    #printing dashed list
             print(j,end = ' ')
         
         print()
-        
         if dashed == rcopy :
-            print(f'Gz you won and your score is {score}!!')
+            print(f'Congratulations you won and your score is {score}!!')
+            print(f"The right answer was : {random_movie}")
             break
         elif a == (number_of_turns) :
             print("Better luck next time")
