@@ -1,7 +1,7 @@
 <!-- markdown title -->
 # RO
 
-## result for normal fiesta;
+## result for normal fiesta; (each rounds)
 
 | encryption | decryption |
 | --- | --- |
